@@ -31,36 +31,21 @@
 </head>
 <body>
 
-    <header>
-
+<header>
+        <!-- Nav Bar -->
         <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light bg-light main-nav">
             <div class="container">
-
                 <div class="navbar-collapse collapse nav-content order-2 zindex-dropdown">
 
                     <ul class="nav navbar-nav ">
                         <li class="nav-item active mx-auto ">
-                            <a class="nav-link mx-auto" href="#">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
-                        <li class="nav-item dropdown mx-auto">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mens
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Teeeees</a>
-                                <a class="dropdown-item" href="#">Bottoms</a>
-                                <a class="dropdown-item" href="#">Accessories</a>
-                            </div>
+                        <li class="nav-item mx-auto">
+                            <a class="nav-link" href="mens.php">Men's</a>
                         </li>
-                        <li class="nav-item dropdown mx-auto ">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Womens
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Teeeees</a>
-                                <a class="dropdown-item" href="#">Bottoms</a>
-                                <a class="dropdown-item" href="#">Accessories</a>
-                            </div>
+                        <li class="nav-item mx-auto">
+                            <a class="nav-link" href="womens.php">Women's</a>
                         </li>
                     </ul>
                 </div>
@@ -78,10 +63,7 @@
                 <div class="ml-auto navbar-collapse collapse nav-content order-3 order-md-3">
                     <ul class="ml-auto nav navbar-nav">
                         <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#">Help</a>
+                            <a class="nav-link" href="help.php">Help</a>
                         </li>
                         <li class="nav-item mx-auto">
                             <a class="nav-link" href="#">Contact</a>
@@ -90,11 +72,6 @@
                 </div>
 
                 <div class="d-flex flex-row order-4 order-sm-4 mx-1">
-                    <div class =" d-flex flex-row mx-1 ">
-                        <button class="btn btn-default btn-sm" type="button" >
-                            <span class="oi oi-person" title="icon name" aria-hidden="true"></span>
-                        </button>
-                    </div>
                     <div class ="d-flex flex-row mx-1 ">
                         <button class="btn btn-default btn-sm" type="button" >
                             <span class="oi oi-cart" title="icon name" aria-hidden="true"></span>
@@ -103,13 +80,11 @@
                 </div>
             </div>
         </nav>
-
-
-    </header>
+</header>
+<!-- Title -->
     <div class="container-fluid" id ="wrapper">
-        <h1 class="text-center">CLOTHING</h1>
-
-
+        <h1 class="font-weight-heavy text-center">MEN'S</h1>
+<!-- Side -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav list-unstyled">
                 <a href="#" class="btn btn-light" id="menu-close">Close Menu</a>
@@ -140,24 +115,24 @@
                                     </div>
                                 </div>
                             </div>
-                        </div   >
+                        </div>
 
                 </li>
             </ul>
         </div>
-
+<!-- Main Content -->
         <div class="container-fluid" id ="page-content-wrapper">
             <div class="container">
                 <a href="#" class="btn btn-light" id="menu-toggle">Show Filter</a>
                 <p>Items Displayed:
                     <?php
-                    getTotalItems();
+                    getTotalItems("Male");
                     ?>
                 </p>
                 <div class="row" >
 
                     <?php
-                    getProductsGrid(300);
+                    getProductsGrid(300,100,"Male");
                     ?>
             </div>
         </div>

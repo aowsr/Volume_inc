@@ -1,4 +1,7 @@
-
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 .shopWomens:hover {
     background: linear-gradient(rgba(255, 198, 206, 0.7), rgba(0,0,0,.7)), url("media/shop_womens_onhover.jpg");
     background-repeat: no-repeat;
@@ -49,21 +52,6 @@
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -185,7 +173,10 @@
     }
 }
 
+#help-form{
+    margin: 0 auto;
 
+}
 
 
 

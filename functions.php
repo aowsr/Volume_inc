@@ -17,30 +17,38 @@ function getConnection() {
         throw new Exception("Connection error " . $e->getMessage(), 0, $e);
     }
 }
-function getTotalItems() {
+function getTotalItems($Gender) {
 
     $dbConn = getConnection();
 
     $sql = "SELECT *   /* this while statement will run until there are no more records in the database */
-                            FROM products";
+                            FROM products
+                            WHERE Gender = '$Gender' ";
 
     $queryResult = $dbConn->query($sql);
     $total = $queryResult->rowCount();
     echo $total;
 
 }
-function getProductsGrid($height) {
+function getProductsGrid($height,$limit,$Gender) {
 
     $dbConn = getConnection();
 
-    $sql = "SELECT imgSrc, productName, description, colour, price   /* this while statement will run until there are no more records in the database */
-                            FROM products";
+    if ($Gender == ""){
+        $chkGen=null;
+    }
+    else {
+        $chkGen= "WHERE Gender = '$Gender'";
+    }
 
+    $sql = "SELECT productCode, imgSrc, productName, description, colour, price, Gender  /* this while statement will run until there are no more records in the database */
+                            FROM products
+                            $chkGen
+                            LIMIT $limit ";
 
-
-        $queryResult = $dbConn->query($sql);
-        while ($rowObj = $queryResult->fetchObject()) {
-            echo "<div class=\"col m-1 \">\n
+    $queryResult = $dbConn->query($sql);
+    while ($rowObj = $queryResult->fetchObject()) {
+        echo "<div class=\"col m-1 \">\n
 
                     <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
                     <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
@@ -50,7 +58,7 @@ function getProductsGrid($height) {
                       
                       </div>\n";
 
-        }
+    }
 
 }
 function getProductsSwipe() {
@@ -74,4 +82,52 @@ function getProductsSwipe() {
     }
 }
 
+function sendHelpEmail() {
+  if (isset($_POST["submit"])) {
+      $name    = $_POST['custName'];
+      $email   = $_POST['inputEmail'];
+      $problem = $_POST['problemOption'];
+      $message = $_POST['problemText'];
+
+
+      $from    = 'Demo Contact Form';
+      $to      = 'aows-r@live.co.uk';
+      $subject = 'Message from Contact Demo ';
+
+      $body = "From: $name\n E-Mail: $email\n Problem-type:\n $problem Message:\n $message";
+
+     mail($to, $subject, $body, $from);
+
+
+
+  }
+
+}
+function storePageDisplay(){
+
+        $dbConn = getConnection();
+
+        $sql = "SELECT productCode,imgSrc, productName, description, price  /* this while statement will run until there are no more records in the database */
+                            FROM products
+                            WHERE ";
+
+
+        $queryResult = $dbConn->query($sql);
+        $prodName = productName;
+        echo $prodName;
+        while ($rowObj = $queryResult->fetchObject()) {
+            echo "<div class=\"col m-1 \">\n
+
+                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
+                    <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
+                    <p class=\"text-center text-muted m-0 \">{$rowObj->colour}</p>
+                    <p class=\"text-center m-0 \">£{$rowObj->price}</p>
+
+                      
+                      </div>\n";
+
+        }
+
+    }
+}
 ?>

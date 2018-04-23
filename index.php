@@ -30,36 +30,22 @@
 <body>
 
 <div id="mainWrapper">
-    <header>
 
+<header>
+        <!-- Nav Bar -->
         <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light bg-light main-nav">
             <div class="container">
-
                 <div class="navbar-collapse collapse nav-content order-2 zindex-dropdown">
 
                     <ul class="nav navbar-nav ">
                         <li class="nav-item active mx-auto ">
-                            <a class="nav-link mx-auto" href="#">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
-                        <li class="nav-item dropdown mx-auto">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mens
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="mens.php">Teeeees</a>
-                                <a class="dropdown-item" href="#">Bottoms</a>
-                                <a class="dropdown-item" href="#">Accessories</a>
-                            </div>
+                        <li class="nav-item mx-auto">
+                            <a class="nav-link" href="mens.php">Men's</a>
                         </li>
-                        <li class="nav-item dropdown mx-auto ">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Womens
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Teeeees</a>
-                                <a class="dropdown-item" href="#">Bottoms</a>
-                                <a class="dropdown-item" href="#">Accessories</a>
-                            </div>
+                        <li class="nav-item mx-auto">
+                            <a class="nav-link" href="womens.php">Women's</a>
                         </li>
                     </ul>
                 </div>
@@ -77,10 +63,7 @@
                 <div class="ml-auto navbar-collapse collapse nav-content order-3 order-md-3">
                     <ul class="ml-auto nav navbar-nav">
                         <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#">Help</a>
+                            <a class="nav-link" href="help.php">Help</a>
                         </li>
                         <li class="nav-item mx-auto">
                             <a class="nav-link" href="#">Contact</a>
@@ -89,11 +72,6 @@
                 </div>
 
                 <div class="d-flex flex-row order-4 order-sm-4 mx-1">
-                    <div class =" d-flex flex-row mx-1 ">
-                        <button class="btn btn-default btn-sm" type="button" >
-                            <span class="oi oi-person" title="icon name" aria-hidden="true"></span>
-                        </button>
-                    </div>
                     <div class ="d-flex flex-row mx-1 ">
                         <button class="btn btn-default btn-sm" type="button" >
                             <span class="oi oi-cart" title="icon name" aria-hidden="true"></span>
@@ -102,9 +80,8 @@
                 </div>
             </div>
         </nav>
-
-
-    </header>
+ </header>
+<!-- Carousel -->
     <main>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
@@ -144,7 +121,7 @@
             <!--PRODUCTS GRID ONLY VISIBLE ON LARGE VIEWPORTS-->
             <div class="row" id = "prodGrid">
                 <?php
-                 getProductsGrid(150);
+                 getProductsGrid(500,6,'');
                 ?>
             </div>
             <!--END OF PRODUCTS GRID-->
@@ -169,16 +146,15 @@
         <!-- END OF CONTENT DIVIDER-->
         <!--MAIN BODY 2-->
         <div class="container-fluid px-0 ">
-
             <h1 class="font-weight-light text-center mb-5">BROWSE CATEGORIES</h1>
             <div class="row mx-auto">
                 <div class="col  project project-1">
                     <a href="#" style="text-decoration: none">
                         <div class="project-hover text-center">
                             <div class="project-hover-overlay">
-                                <h1 class="display-3">Mens</h1>
+                                <h1 class="display-3"> Mens</h1>
                             </div>
-                            <a class="project-hover-shopBtn" href="#">Shop Mens</a>
+                            <a class="project-hover-shopBtn" href="mens.php">Shop Mens</a>
                         </div>
                     </a>
                 </div>
@@ -188,7 +164,7 @@
                             <div class="project-hover-overlay">
                                 <h2 class="display-3">Womens</h2>
                             </div>
-                            <a class="project-hover-shopBtn" href="#">Shop Womens</a>
+                            <a class="project-hover-shopBtn" href="womens.php">Shop Womens</a>
                         </div>
                     </a>
 
