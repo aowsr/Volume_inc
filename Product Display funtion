@@ -1,0 +1,34 @@
+function getProductsGrid($height,$limit,$Gender) {
+
+    $dbConn = getConnection();
+
+    if ($Gender == ""){
+
+        $chkGen="";
+    }
+    else {
+        $chkGen= "WHERE Gender = '$Gender'";
+    }
+
+    $sql = "SELECT imgSrc, productName, description, colour, price, Gender  /* this while statement will run until there are no more records in the database */
+                            FROM products
+                            '$chkGen' 
+                            LIMIT $limit ";
+
+
+
+        $queryResult = $dbConn->query($sql);
+        while ($rowObj = $queryResult->fetchObject()) {
+            echo "<div class=\"col m-1 \">\n
+
+                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
+                    <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
+                    <p class=\"text-center text-muted m-0 \">{$rowObj->colour}</p>
+                    <p class=\"text-center m-0 \">£{$rowObj->price}</p>
+
+                      
+                      </div>\n";
+
+        }
+
+}
