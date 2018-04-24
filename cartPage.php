@@ -4,53 +4,7 @@ ini_set("session.save_path", "/home/unn_w16015149/sessionData");
 session_start();
 $product_ids = array();
 
-
-if(empty($_SESSION['shopping_cart'])){
-    $_SESSION['shopping_cart']= array();
-}
-array_push($_SESSION['shopping_cart'],$_GET['id']);
-var_dump($_SESSION['shopping_cart']);
-foreach($_SESSION['shopping_cart'] as $value) {
-
-    $productCode = $value;
-    $getCode = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
-                            FROM products
-                            WHERE productCode = '$productCode'";
-
-    $queryResult = $dbConn->query($getCode);
-    $rowObj      = $queryResult->fetchObject();
-
-    echo "<div class=\"container - fluid\" id =\"wrapper\">
-     <h1 class=\"font - weight - heavy text - center\">{$rowObj->productName}</h1>
-      <h2 class=\"font - weight - light text - center\">{$rowObj->colour}</h2>
-     
-     <main>
-        <div class=\"continer\" id=\"storeMain\">
-            <div class = \"row\">
-                <!-- Image Col -->
-                <div class = \"col\">
-                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-fluid mx-auto d-block\"></a>
-</div >
-                <!--Details Col-->
-                <div class = \\col-sm\" > 
-                <br >    
-                <h4 class=\"text - center\" > £{
-    $rowObj->price}</h4 >
-                <br >
-                <br >
-                <form method = \"post\" action = \"cartPage.php?id={$rowObj->productCode}\" >
-
-                <h5 class=\"text - center\" >{
-    $rowObj->description}</h5 >
-                <br >
-                <br >
-                <button type = \"submit\" class=\"btn btn-dark btn-block\" name = \"add_too_cart\" > Add Too Cart </button >
-                </div >
-            </div >
-      </div >";
-};
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,8 +86,46 @@ foreach($_SESSION['shopping_cart'] as $value) {
             </div>
         </nav>
     </header>
+<div class=\"container-fluid\" id =\"wrapper\">
+     <h1 class=\"font-weight-heavy text-center\">Your Cart</h1>
+<br>
+<br>
     <?php
-    var_dump($_SESSION['shopping_cart']);
+    if(empty($_SESSION['shopping_cart'])){
+        $_SESSION['shopping_cart']= array();
+    }
+    array_push($_SESSION['shopping_cart'],$_GET['id']);
+    foreach($_SESSION['shopping_cart'] as $value) {
+
+    $productCode = $value;
+    $getCode = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+                            FROM products
+                            WHERE productCode = '$productCode'";
+
+    $queryResult = $dbConn->query($getCode);
+    $rowObj      = $queryResult->fetchObject();
+
+    echo "    
+<br>
+<div class=\"continaer-fluid\">
+    <div class=\"row\">
+        <div class=\"col\">
+        </div>
+        <div class=\"col\">
+            <table class=\"table\">
+                <tbody>
+                    <tr>
+                    <th scope=\"row\"></th>
+                    <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
+                    <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-fluid mx-sm d-block\" style=\"height:100px\"> </a></td>
+                    <td><p class=\"text - center\" > £{$rowObj->price}</p ></td>
+                    </tr>
+            </table>
+        </div>
+        <div class=\"col\">
+        </div>
+    </div>";
+    }
     ?>
     <end>
 
