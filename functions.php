@@ -118,7 +118,7 @@ function storePageDisplay(){
         while ($rowObj = $queryResult->fetchObject()) {
             echo "<div class=\"col m-1 \">\n
 
-                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
+                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\" \"></a>
                     <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
                     <p class=\"text-center text-muted m-0 \">{$rowObj->colour}</p>
                     <p class=\"text-center m-0 \">£{$rowObj->price}</p>
@@ -128,6 +128,7 @@ function storePageDisplay(){
 
         }
 
-    }
+
+
 }
 ?>
