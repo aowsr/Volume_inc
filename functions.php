@@ -32,25 +32,25 @@ function getTotalItems($Gender) {
 }
 function getProductsGrid($height,$limit,$Gender) {
 
-    $dbConn = getConnection();
+        $dbConn = getConnection();
 
-    if ($Gender == ""){
-        $chkGen=null;
-    }
-    else {
-        $chkGen= "WHERE Gender = '$Gender'";
-    }
+        if ($Gender == ""){
+            $chkGen=null;
+        }
+        else {
+            $chkGen= "WHERE Gender = '$Gender'";
+        }
 
-    $sql = "SELECT productCode, imgSrc, productName, description, colour, price, Gender  /* this while statement will run until there are no more records in the database */
+        $sql = "SELECT productCode, imgSrc, productName, description, colour, price, Gender  /* this while statement will run until there are no more records in the database */
                             FROM products
                             $chkGen
                             LIMIT $limit ";
 
-    $queryResult = $dbConn->query($sql);
-    while ($rowObj = $queryResult->fetchObject()) {
-        echo "<div class=\"col m-1 \">\n
+        $queryResult = $dbConn->query($sql);
+        while ($rowObj = $queryResult->fetchObject()) {
+            echo "<div class=\"col m-1 \">\n
 
-                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
+                    <a href=\"storePage.php?productCode={$rowObj->productCode}\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
                     <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
                     <p class=\"text-center text-muted m-0 \">{$rowObj->colour}</p>
                     <p class=\"text-center m-0 \">£{$rowObj->price}</p>
@@ -58,7 +58,7 @@ function getProductsGrid($height,$limit,$Gender) {
                       
                       </div>\n";
 
-    }
+        }
 
 }
 function getProductsSwipe() {
@@ -101,34 +101,6 @@ function sendHelpEmail() {
 
 
   }
-
-}
-function storePageDisplay(){
-
-        $dbConn = getConnection();
-
-        $sql = "SELECT productCode,imgSrc, productName, description, price  /* this while statement will run until there are no more records in the database */
-                            FROM products
-                            WHERE ";
-
-
-        $queryResult = $dbConn->query($sql);
-        $prodName = productName;
-        echo $prodName;
-        while ($rowObj = $queryResult->fetchObject()) {
-            echo "<div class=\"col m-1 \">\n
-
-                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\" \"></a>
-                    <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
-                    <p class=\"text-center text-muted m-0 \">{$rowObj->colour}</p>
-                    <p class=\"text-center m-0 \">£{$rowObj->price}</p>
-
-                      
-                      </div>\n";
-
-        }
-
-
 
 }
 ?>

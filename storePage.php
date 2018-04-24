@@ -81,25 +81,44 @@
         </div>
     </nav>
 </header>
-<!-- Title -->
-<div class="container-fluid" id ="wrapper">
-    <h1 class="font-weight-heavy text-center">MEN'S</h1>
-<!-- Main StorePage -->
-<main>
-    <div class="continer" id="storeMain">
-        <div class = "row">
-            <!-- Image Col -->
-            <div class = "col-lg-">
+<?php
+$productCode = filter_has_var(INPUT_GET, 'productCode') ? $_GET['productCode'] : null;
 
+$dbConn = getConnection();
+
+$getCode = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+                            FROM products
+                            WHERE productCode = '$productCode'";
+
+$queryResult = $dbConn->query($getCode);
+$rowObj = $queryResult->fetchObject();
+
+    echo "<div class=\"container-fluid\" id =\"wrapper\">
+     <h1 class=\"font-weight-heavy text-center\">{$rowObj->productName}</h1>
+      <h2 class=\"font-weight-light text-center\">{$rowObj->colour}</h2>
+     
+     <main>
+        <div class=\"continer\" id=\"storeMain\">
+            <div class = \"row\">
+                <!-- Image Col -->
+                <div class = \"col\">
+                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-fluid mx-auto d-block\"></a>
+                 </div>
+                <!-- Details Col -->
+                <div class = \"col-sm\">
+                <br>
+                <br>
+                <h5 class=\"text - center\">{$rowObj->description}</h5>
+                <br>
+                <br>
+                <h5 class=\"text - center\">£{$rowObj->price}</h5>
+                </div>
             </div>
-            <!-- Details Col -->
-            <div class = "col-lg-">
+      </div>
 
-            </div>
-        </div>
-    </div>
+     </main>";
 
-</main>
+?>
 <end>
 
     <br>

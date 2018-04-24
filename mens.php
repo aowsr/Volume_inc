@@ -22,7 +22,6 @@
 
     <script type='text/javascript' src='jq/js/libs/jquery-3.2.1.js'></script>
     <script type='text/javascript' src='jq/js/jq1.js'></script>
-    <script type='text/javascript' src='functions.js'></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/js/swiper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/js/swiper.min.js"></script>
@@ -95,7 +94,7 @@
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Colour
+                                        Gender
                                     </button>
                                 </h5>
                             </div>
@@ -103,15 +102,15 @@
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Black" id="defaultCheck1" onchange=getFilterItems(this.value);>
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            Black
+                                            Mens
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Grey" id="defaultCheck1" onchange=getFilterItems(this.value);>
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            Grey
+                                            Womens
                                         </label>
                                     </div>
                                 </div>
