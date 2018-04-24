@@ -1,4 +1,9 @@
-<?php include "functions.php"?>
+<?php include "functions.php";
+$dbConn = getConnection();
+ini_set("session.save_path", "/home/unn_w16015149/sessionData");
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +89,6 @@
 <?php
 $productCode = filter_has_var(INPUT_GET, 'productCode') ? $_GET['productCode'] : null;
 
-$dbConn = getConnection();
 
 $getCode = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
                             FROM products
@@ -106,10 +110,11 @@ $rowObj = $queryResult->fetchObject();
                  </div>
                 <!-- Details Col -->
                 <div class = \"col-sm\"> 
-                <br>
+                <br>    
                 <h4 class=\"text - center\">£{$rowObj->price}</h4>
                 <br>
                 <br>
+                <form method=\"post\" action=\"cartPage.php?id={$rowObj->productCode}\">
                 <div class=\"form-group\">
                     <label for=\"helpSelection\">Select Size</label>
                     <select class=\"form-control\" id=\"problemOption\">
@@ -123,7 +128,7 @@ $rowObj = $queryResult->fetchObject();
                 <h5 class=\"text - center\">{$rowObj->description}</h5>
                 <br>
                 <br>
-                <button type=\"submit\" class=\"btn btn-dark btn-block\">Add Too Cart</button>
+                <button type=\"submit\" class=\"btn btn-dark btn-block\" name = \"add_too_cart\">Add Too Cart</button>
                 </div>
             </div>
       </div>
