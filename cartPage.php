@@ -2,6 +2,7 @@
 $dbConn = getConnection();
 ini_set("session.save_path", "/home/unn_w16015149/sessionData");
 session_start();
+session_destroy();
 $product_ids = array();
 
 ?>
@@ -86,8 +87,9 @@ $product_ids = array();
             </div>
         </nav>
     </header>
-<div class=\"container-fluid\" id =\"wrapper\">
-     <h1 class=\"font-weight-heavy text-center\">Your Cart</h1>
+<div class="container-fluid" id ="wrapper">
+     <h1 class="font-weight-heavy text-center">Your Cart</h1>
+</div>
 <br>
 <br>
     <?php
@@ -113,11 +115,17 @@ $product_ids = array();
         </div>
         <div class=\"col\">
             <table class=\"table\">
-                <tbody>
+                <thead class=\"thead-dark\">
                     <tr>
-                    <th scope=\"row\"></th>
+                    <th scope=\"col\">Item</th>
+                    <th scope=\"col\"></th>
+                    <th scope=\"col\">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr> 
+                    <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></td>
                     <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
-                    <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-fluid mx-sm d-block\" style=\"height:100px\"> </a></td>
                     <td><p class=\"text - center\" > £{$rowObj->price}</p ></td>
                     </tr>
             </table>
