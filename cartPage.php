@@ -1,6 +1,6 @@
 <?php include "functions.php";
 $dbConn = getConnection();
-ini_set("session.save_path", "/home/unn_w16015149/sessionData");
+ini_set("session.save_path", "/home/unn_w16024005/sessionData");
 session_start();
 //$product_ids = array();
 // Variable to be used later to calculate total cost of items
@@ -127,7 +127,7 @@ $total = 0;
         $rowObj      = $queryResult->fetchObject();
         $total = $total + $rowObj->price;
         echo"     
-            <tbody>
+            <tbody>`
                     <tr> 
                     <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></td>
                     <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
@@ -152,11 +152,11 @@ $total = 0;
                             <input type="hidden" name="upload" value="1">
                             <?php
                                 foreach ($_SESSION['shopping_cart'] as $value) {
-                                    $i = 1;
+                                    $i = 1 ;
                                     echo "
                                     <input type=\"hidden\" name=\"item_name_$i\" value=\"{$rowObj->productName}\">
                                     <input type=\"hidden\" name=\"quantity_$i\" value=\"1\">
-                                    <input type=\"hidden\" name=\"amount_$i\" value=\"{$rowObj->price}\"> 
+                                    <input type=\"hidden\" name=\"amount_$i\" value=\"{$rowObj->price}\">
                                     ";
                                     $i++;
                                 }

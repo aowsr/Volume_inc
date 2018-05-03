@@ -1,6 +1,6 @@
 <?php include "functions.php";
 $dbConn = getConnection();
-ini_set("session.save_path", "/home/unn_w16015149/sessionData");
+ini_set("session.save_path", "/home/unn_w16024005/sessionData");
 session_start();
 
 ?>
