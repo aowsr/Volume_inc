@@ -130,6 +130,7 @@ $rowObj = $queryResult->fetchObject();
                 <br>
                 <button type=\"submit\" class=\"btn btn-dark btn-block\" name = \"add_too_cart\">Add Too Cart</button>
                 </div>
+                </form>
             </div>
       </div>
 

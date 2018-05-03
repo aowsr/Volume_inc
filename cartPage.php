@@ -101,43 +101,18 @@ session_start();
                         <th scope="col">Item</th>
                         <th scope="col"></th>
                         <th scope="col">Price</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                         <?php showCart(); ?>
-                     <tr>
-                     <td><p class="font-weight-heavy text-center">Total Price</p></td>
-                     <td></td>
-                     <td ><p class=\"text-center\" ><?php echo"£$total"?></p ></td >
-                    </tr >
                     </table >
                      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="business" value="volumeincclothing@gmail.com">
                             <input type="hidden" name="cmd" value="_cart">
                             <input type="hidden" name="currency_code" value="GBP">
                             <input type="hidden" name="upload" value="1">
-                            <?php
-                                $i = 1;
-                                foreach ($_SESSION['shopping_cart'] as $value) {
-
-                                    $productCode = $value;
-                                    $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
-                                                      FROM products
-                                                      WHERE productCode = '$productCode'";
-
-                                    $queryResult = $dbConn->query($getCode);
-                                    $rowObj= $queryResult->fetchObject();
-
-                                    echo "
-                                    <input type=\"hidden\" name=\"item_name_$i\" value=\"{$rowObj->productName}\">
-                                    <input type=\"hidden\" name=\"quantity_$i\" value=\"1\">
-                                    <input type=\"hidden\" name=\"amount_$i\" value=\"{$rowObj->price}\">
-                                    
-                                    ";
-                                    $i ++;
-
-                                }
-                            ?>
-                                <input type="submit" value="PayPal">
+                            <?php finalizeTransaction() ?>
+                            <button type="submit" class="btn btn-dark btn-block" id="PayPal" >Pay Using PayPal</button>
                      </form>
             </div>
             <div class="col">
@@ -153,18 +128,6 @@ session_start();
 </div>
 
 
-<script>
-    var mySwiper = new Swiper ('.swiper-container', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: false,
-        spaceBetween: -100,
-        initialSlide:0.8,
-        freeMode: true,
-        freeModeSticky: true,
-        freeModeMomentumRatio: 0.5,
-    })
-</script>
 
 </body>
 </html>

@@ -127,40 +127,96 @@ function sendHelpEmail() {
 
 
 }
-function showCart(){
+
+
+function showCart() {
     $dbConn = getConnection();
-    $total = 0;
-    if(empty($_SESSION['shopping_cart'])){
-        $_SESSION['shopping_cart']= array();
+    $total  = 0;
+    if (empty($_SESSION['shopping_cart'])) {
+        $_SESSION['shopping_cart'] = array();
 
     }
-    array_push($_SESSION['shopping_cart'],$_GET['id']);
-    //Keeps track of number of items in cart
-    // $count = count($_SESSION['shopping_cart']);
-    // creating sequential array
-    // $product_ids = array_column($_SESSION['shopping_cart'], 'id');
+    if (isset($_POST['add_too_cart'])) {
+        array_push($_SESSION['shopping_cart'], $_GET['id']);
+    }
+    if(isset($_POST['removeBtn']))
+    {
+        removeItemFromCart();
+    }
 
-    //  print_r($product_ids);
+        //Keeps track of number of items in cart
+        // $count = count($_SESSION['shopping_cart']);
+        // creating sequential array
+        // $product_ids = array_column($_SESSION['shopping_cart'], 'id');
 
-    foreach($_SESSION['shopping_cart'] as $value) {
+        //  print_r($product_ids);
 
-        $productCode = $value;
-        $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+        foreach ($_SESSION['shopping_cart'] as $value) {
+
+            $productCode = $value;
+            $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
                             FROM products
                             WHERE productCode = '$productCode'";
 
-        $queryResult = $dbConn->query($getCode);
-        $rowObj      = $queryResult->fetchObject();
-        $total = $total + $rowObj->price;
-        echo"     
+            $queryResult = $dbConn->query($getCode);
+            $rowObj      = $queryResult->fetchObject();
+            $total       = $total + $rowObj->price;
+            echo "     
             <tbody>
                     <tr> 
                     <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></td>
                     <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
                     <td><p class=\"text - center\" >£{$rowObj->price}</p ></td>
+                    <td><form action=\"cartPage.php\" method=\"post\">
+                    <input type=\"hidden\" name=\"removeItm\" value=\"$productCode\">
+                    <button type=\"submit\" class=\"btn btn-dark btn-block\" name='removeBtn'>Remove From Cart</button>
+                    </form></td>
+                    
                     </tr>
        
-    ";
-    }
+        ";
+        }
+        echo "                     
+                     <tr>
+                     <td><p class=\"font-weight-heavy text-center\">Total Price</p></td>
+                     <td></td>
+                     <td ><p class=\"text - center\" > £{$total} </p ></td>
+                    </tr >";
+
+
 }
-?>
+function finalizeTransaction() {
+    $dbConn = getConnection();
+    $i = 1;
+    foreach ($_SESSION['shopping_cart'] as $value) {
+
+        $productCode = $value;
+        $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+                                                      FROM products
+                                                      WHERE productCode = '$productCode'";
+
+        $queryResult = $dbConn->query($getCode);
+        $rowObj= $queryResult->fetchObject();
+
+        echo "
+                <input type=\"hidden\" name=\"item_name_$i\" value=\"{$rowObj->productName}\">
+                <input type=\"hidden\" name=\"quantity_$i\" value=\"1\">
+                <input type=\"hidden\" name=\"amount_$i\" value=\"{$rowObj->price}\">
+                                    
+            ";
+        $i ++;
+
+    }
+
+
+}
+function removeItemFromCart(){
+
+    $valueRemove = $_POST['removeItm'];
+
+    foreach($_SESSION['shopping_cart'] as $key => $value) {
+        if($value == $valueRemove)
+            unset($_SESSION['shopping_cart'][$key]);
+    }
+
+}
