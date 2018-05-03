@@ -28,83 +28,74 @@
 
 </head>
 <body>
-
 <div id="mainWrapper">
-
 <header>
-        <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light bg-light main-nav">
-            <div class="container">
-                <div class="navbar-collapse collapse nav-content order-2 zindex-dropdown">
-
-                    <ul class="nav navbar-nav ">
-                        <li class="nav-item active mx-auto ">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="mens.php">Men's</a>
-                        </li>
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="womens.php">Women's</a>
-                        </li>
-                    </ul>
-                </div>
+    <!--NAV BAR -->
+    <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light bg-light main-nav">
+        <div class="container">
+            <div class="navbar-collapse collapse nav-content order-2 zindex-dropdown">
+                <ul class="nav navbar-nav ">
+                    <li class="nav-item active mx-auto ">
+                        <a class="nav-link" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item mx-auto">
+                        <a class="nav-link" href="mens.php">Men's</a>
+                    </li>
+                    <li class="nav-item mx-auto">
+                        <a class="nav-link" href="womens.php">Women's</a>
+                    </li>
+                </ul>
+            </div>
                 <ul class="nav navbar-nav text-nowrap flex-row  order-1 order-md-2 " >
-
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".nav-content" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <div class="nav navbar-nav mx-3 ">
-                        <img src="media/volume_inc_md.png" class="d-none d-sm-block" alt="">
-                        <img src="media/volume_inc_sm.png" class="d-block d-sm-none" alt="">
-                    </div>
+            <div class="nav navbar-nav mx-3 ">
+                    <img src="media/volume_inc_md.png" class="d-none d-sm-block" alt="">
+                    <img src="media/volume_inc_sm.png" class="d-block d-sm-none" alt="">
+            </div>
                 </ul>
-                <div class="ml-auto navbar-collapse collapse nav-content order-3 order-md-3">
-                    <ul class="ml-auto nav navbar-nav">
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="help.php">Help</a>
-                        </li>
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="d-flex flex-row order-4 order-sm-4 mx-1">
-                    <div class ="d-flex flex-row mx-1 ">
-                        <button class="btn btn-default btn-sm" type="button" >
-                            <span class="oi oi-cart" title="icon name" aria-hidden="true"></span>
-                        </button>
-                    </div>
+            <div class="ml-auto navbar-collapse collapse nav-content order-3 order-md-3">
+                <ul class="ml-auto nav navbar-nav">
+                    <li class="nav-item mx-auto">
+                        <a class="nav-link" href="help.php">Help</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex flex-row order-4 order-sm-4 mx-1">
+                <div class ="d-flex flex-row mx-1 ">
+                    <button class="btn btn-default btn-sm" type="button" >
+                        <span class="oi oi-cart" title="icon name" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
-        </nav>
- </header>
-<!-- Carousel -->
-    <main>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner " >
-                <div class="carousel-item active">
-                    <video class="video-fluid d-none d-lg-block" autoplay loop>
-                        <source src="media/Tropical.mp4" type="video/mp4" />
-                    </video>
+        </div>
+     </nav>
+</header>
+<!-- CAROUSEL -->
+<main>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner " >
+            <div class="carousel-item active">
+                <video class="video-fluid d-none d-lg-block" autoplay loop>
+                    <source src="media/Tropical.mp4" type="video/mp4" />
+                </video>
                     <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-lg-block d-none w-100" src="media/nike.jpg" alt="Second slide">
-                    <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-lg-block d-none w-100" src="media/nike.jpg" alt="Second slide">
-                    <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="Second slide">
-                </div>
             </div>
+            <div class="carousel-item">
+                <img class="d-lg-block d-none w-100" src="media/nike.jpg" alt="Second slide">
+                <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-lg-block d-none w-100" src="Spirng_Style_web.jpg" alt="Second slide">
+                <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="Second slide">
+            </div>
+        </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -113,76 +104,69 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+    </div>
         <!--MAIN BODY 1-->
-        <div class="container-fluid p-0">
-            <h1 class="font-weight-light text-center ">LATEST PRODUCTS</h1>
-
+    <div class="container-fluid p-0">
+        <h1 class="font-weight-light text-center ">LATEST PRODUCTS</h1>
+        <hr class="rgba-white-light" style="margin: 2% 10%;">
+        <br>
             <!--PRODUCTS GRID ONLY VISIBLE ON LARGE VIEWPORTS-->
-            <div class="row" id = "prodGrid">
+        <div class="row" id = "prodGrid">
+            <?php
+                getProductsGrid(500,6,'');
+            ?>
+        </div>
+        <!--END OF PRODUCTS GRID-->
+        <!--SWIPE FEATURE FOR MOBILE-->
+        <div class="swiper-container">
+        <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
                 <?php
-                 getProductsGrid(500,6,'');
+                    getProductsSwipe();
                 ?>
             </div>
-            <!--END OF PRODUCTS GRID-->
-
-            <!--SWIPE FEATURE FOR MOBILE-->
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
-
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <?php
-                    getProductsSwipe();
-                    ?>
-                </div>
-            </div>
-            <!--END OF SWIPE FEATURE FOR MOBILE-->
-
         </div>
-        <!--END OF MAIN BODY 1-->
+        <!--END OF SWIPE FEATURE FOR MOBILE-->
+    </div>
+    <!--END OF MAIN BODY 1-->
         <!--CONTENT DIVIDER-->
         <hr class="rgba-white-light" style="margin: 2% 10%;">
         <!-- END OF CONTENT DIVIDER-->
         <!--MAIN BODY 2-->
-        <div class="container-fluid px-0 ">
-            <h1 class="font-weight-light text-center mb-5">BROWSE CATEGORIES</h1>
-            <div class="row mx-auto">
-                <div class="col  project project-1">
-                    <a href="#" style="text-decoration: none">
-                        <div class="project-hover text-center">
-                            <div class="project-hover-overlay">
-                                <h1 class="display-3"> Mens</h1>
-                            </div>
-                            <a class="project-hover-shopBtn" href="mens.php">Shop Mens</a>
+    <div class="container-fluid px-0 ">
+        <h1 class="font-weight-light text-center mb-5">BROWSE CATEGORIES</h1>
+        <div class="row mx-auto">
+            <div class="col  project project-1">
+                <a href="#" style="text-decoration: none">
+                    <div class="project-hover text-center">
+                        <div class="project-hover-overlay">
+                            <h1 class="display-3"> Mens</h1>
                         </div>
-                    </a>
-                </div>
-                <div class="col project project-2">
-                    <a href="#" style="text-decoration: none">
-                        <div class="project-hover text-center">
-                            <div class="project-hover-overlay">
-                                <h2 class="display-3">Womens</h2>
-                            </div>
-                            <a class="project-hover-shopBtn" href="womens.php">Shop Womens</a>
+                        <a class="project-hover-shopBtn" href="mens.php">Shop Mens</a>
+                    </div>
+                </a>
+            </div>
+            <div class="col project project-2">
+                <a href="#" style="text-decoration: none">
+                    <div class="project-hover text-center">
+                        <div class="project-hover-overlay">
+                             <h2 class="display-3">Womens</h2>
                         </div>
-                    </a>
-
-
-                </div>
-
+                        <a class="project-hover-shopBtn" href="womens.php">Shop Womens</a>
+                    </div>
+                </a>
             </div>
         </div>
-        <!-- END OF MAIN BODY 2-->
-    </main>
-    <end>
-
-        <br>
-        <br>
-
-    </end>
+    </div>
+    <!-- END OF MAIN BODY 2-->
+</main>
+<end>
+<br>
+<br>
+</end>
 </div>
-
+<!-- SCRIPT FOR SWIPE ITEMS ON MOBILE -->
 <script>
     var mySwiper = new Swiper ('.swiper-container', {
         // Optional parameters
