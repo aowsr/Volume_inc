@@ -83,24 +83,84 @@ function getProductsSwipe() {
 }
 
 function sendHelpEmail() {
-  if (isset($_POST["submit"])) {
-      $name    = $_POST['custName'];
-      $email   = $_POST['inputEmail'];
-      $problem = $_POST['problemOption'];
-      $message = $_POST['problemText'];
+
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+
+//Load Composer's autoloader
+
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
 
 
-      $from    = 'Demo Contact Form';
-      $to      = 'aows-r@live.co.uk';
-      $subject = 'Message from Contact Demo ';
-
-      $body = "From: $name\n E-Mail: $email\n Problem-type:\n $problem Message:\n $message";
-
-     mail($to, $subject, $body, $from);
+    $name    = $_POST['custName'];
+    $email   = $_POST['inputEmail'];
+    $problem = $_POST['problemOption'];
+    $message = $_POST['problemText'];
 
 
+    $mail = new PHPMailer;
 
-  }
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0;
+    $mail->Debugoutput = 'html';
+    $mail->Host = "smtp.gmail.com";
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "volumeincclothing@gmail.com";
+    $mail->Password = "bostonred18";
+    $mail->setFrom('volumeincclothing@gmail.com', 'Volume Inc');
+    $mail->addAddress('aows-r@live.co.uk', 'To');
 
+    $mail->Subject = "$name $problem";
+    $mail->Body    =  "$email $problem $message";
+
+    if (!$mail->send()) {
+        echo "Error sending message";
+    } else {
+        echo "Message sent!";
+    }
+
+
+
+
+}
+function showCart(){
+    $dbConn = getConnection();
+    $total = 0;
+    if(empty($_SESSION['shopping_cart'])){
+        $_SESSION['shopping_cart']= array();
+
+    }
+    array_push($_SESSION['shopping_cart'],$_GET['id']);
+    //Keeps track of number of items in cart
+    // $count = count($_SESSION['shopping_cart']);
+    // creating sequential array
+    // $product_ids = array_column($_SESSION['shopping_cart'], 'id');
+
+    //  print_r($product_ids);
+
+    foreach($_SESSION['shopping_cart'] as $value) {
+
+        $productCode = $value;
+        $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+                            FROM products
+                            WHERE productCode = '$productCode'";
+
+        $queryResult = $dbConn->query($getCode);
+        $rowObj      = $queryResult->fetchObject();
+        $total = $total + $rowObj->price;
+        echo"     
+            <tbody>
+                    <tr> 
+                    <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></td>
+                    <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
+                    <td><p class=\"text - center\" >£{$rowObj->price}</p ></td>
+                    </tr>
+       
+    ";
+    }
 }
 ?>

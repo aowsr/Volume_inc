@@ -85,25 +85,25 @@
                 <video class="video-fluid d-none d-lg-block" autoplay loop>
                     <source src="media/Tropical.mp4" type="video/mp4" />
                 </video>
-                    <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="First slide">
+                <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-lg-block d-none w-100" src="media/nike.jpg" alt="Second slide">
-                <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="Second slide">
+                <img class="d-lg-block d-none w-100" src="media/Spirng_Style_web.jpg" alt="Second slide">
+                <img class="d-block d-lg-none w-100" src="media/logo_tee_mobile.png" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-lg-block d-none w-100" src="Spirng_Style_web.jpg" alt="Second slide">
-                <img class="d-block d-lg-none w-100" src="media/nike_mobile.jpg" alt="Second slide">
+                <img class="d-lg-block d-none w-100" src="media/nike3.jpg" alt="Third slide">
+                <img class="d-block d-lg-none w-100" src="media/nike3_mobile.jpg" alt="Third slide">
             </div>
         </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
         <!--MAIN BODY 1-->
     <div class="container-fluid p-0">

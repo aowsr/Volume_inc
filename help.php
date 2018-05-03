@@ -91,16 +91,16 @@
             <form method="post" name="volHelpFrm" action="sendEmail.php">
                 <div class="form-group">
                     <label for="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" name="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="custName">Your Name</label>
-                    <input class="form-control" type="text" value="Enter Name" id="custName">
+                    <input class="form-control" type="text" value="Enter Name" name="custName">
                 </div>
                 <div class="form-group">
                     <label for="helpSelection">How can We Help?</label>
-                    <select class="form-control" id="problemOption">
+                    <select class="form-control" name="problemOption">
                         <option>Payment</option>
                         <option>Order</option>
                         <option>Returns</option>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="form-group">
                     <label for="problemText">Tell Us About The Issue</label>
-                    <textarea class="form-control" id="problemText" rows="3"></textarea>
+                    <textarea class="form-control" name="problemText" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-light">Submit</button>
             </form>
