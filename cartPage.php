@@ -2,9 +2,9 @@
 $dbConn = getConnection();
 ini_set("session.save_path", "/home/unn_w16015149/sessionData");
 session_start();
-session_destroy();
-$product_ids = array();
-
+//$product_ids = array();
+// Variable to be used later to calculate total cost of items
+$total = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,9 +71,6 @@ $product_ids = array();
                         <li class="nav-item mx-auto">
                             <a class="nav-link" href="help.php">Help</a>
                         </li>
-                        <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
                     </ul>
                 </div>
 
@@ -92,49 +89,85 @@ $product_ids = array();
 </div>
 <br>
 <br>
+<br>
+    <div class="continaer-fluid">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col"></th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
     <?php
     if(empty($_SESSION['shopping_cart'])){
         $_SESSION['shopping_cart']= array();
+
     }
     array_push($_SESSION['shopping_cart'],$_GET['id']);
+    //Keeps track of number of items in cart
+   // $count = count($_SESSION['shopping_cart']);
+    // creating sequential array
+   // $product_ids = array_column($_SESSION['shopping_cart'], 'id');
+
+  //  print_r($product_ids);
+
     foreach($_SESSION['shopping_cart'] as $value) {
 
-    $productCode = $value;
-    $getCode = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+        $productCode = $value;
+        $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
                             FROM products
                             WHERE productCode = '$productCode'";
 
-    $queryResult = $dbConn->query($getCode);
-    $rowObj      = $queryResult->fetchObject();
-
-    echo "    
-<br>
-<div class=\"continaer-fluid\">
-    <div class=\"row\">
-        <div class=\"col\">
-        </div>
-        <div class=\"col\">
-            <table class=\"table\">
-                <thead class=\"thead-dark\">
-                    <tr>
-                    <th scope=\"col\">Item</th>
-                    <th scope=\"col\"></th>
-                    <th scope=\"col\">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
+        $queryResult = $dbConn->query($getCode);
+        $rowObj      = $queryResult->fetchObject();
+        $total = $total + $rowObj->price;
+        echo"     
+            <tbody>
                     <tr> 
                     <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></td>
                     <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
-                    <td><p class=\"text - center\" > £{$rowObj->price}</p ></td>
+                    <td><p class=\"text - center\" >£{$rowObj->price}</p ></td>
                     </tr>
-            </table>
-        </div>
-        <div class=\"col\">
-        </div>
-    </div>";
+       
+    ";
+
+
     }
-    ?>
+?>
+                     <tr>
+                     <td><p class="font-weight-heavy text-center">Total Price</p></td>
+                     <td></td>
+                     <td ><p class=\"text-center\" ><?php echo"£$total"?></p ></td >
+                    </tr >
+                    </table >
+                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="business" value="volumeincclothing@gmail.com">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="currency_code" value="GBP">
+                            <input type="hidden" name="upload" value="1">
+                            <?php
+                                foreach ($_SESSION['shopping_cart'] as $value) {
+                                    $i = 1;
+                                    echo "
+                                    <input type=\"hidden\" name=\"item_name_$i\" value=\"{$rowObj->productName}\">
+                                    <input type=\"hidden\" name=\"quantity_$i\" value=\"1\">
+                                    <input type=\"hidden\" name=\"amount_$i\" value=\"{$rowObj->price}\"> 
+                                    ";
+                                    $i++;
+                                }
+                            ?>
+                                <input type="submit" value="PayPal">
+                     </form>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+
     <end>
 
         <br>
@@ -142,6 +175,7 @@ $product_ids = array();
 
     </end>
 </div>
+
 
 <script>
     var mySwiper = new Swiper ('.swiper-container', {
