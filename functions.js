@@ -31,3 +31,54 @@ function cart(id) {
     });
 
 }
+
+$(document).ready(function () {
+
+    $.ajax({
+        type: 'post',
+        url: 'loginProccess.php',
+        data: {
+
+        },
+        success: function (response) {
+            document.getElementById("chk").innerHTML = response;
+        }
+    });
+
+});
+
+function login() {
+    var username = document.getElementById("userinput").value;
+    var password = document.getElementById("passwordinput").value;
+
+    $.ajax({
+        type: 'post',
+        url: 'loginProccess.php',
+        data: {
+            username: username,
+            password: password
+        },
+        success: function (response) {
+            document.getElementById("chk").innerHTML = response;
+
+
+        }
+    });
+
+}
+function logout() {
+
+
+    $.ajax({
+        type: 'post',
+        url: 'loginProccess.php',
+        data: {
+        },
+        success: function (response) {
+            document.getElementById("chk").innerHTML = response;
+
+
+        }
+    });
+
+}

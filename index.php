@@ -118,6 +118,24 @@
         freeModeMomentumRatio: 0.5
     })
 </script>
+<script>
+    function login() {
+        var username = document.getElementById("userinput").value;
+        var password = document.getElementById("passwordinput").value;
+
+        $.ajax({
+            type: 'post',
+            url: 'loginProccess.php',
+            data: {
+                username: username,
+                password:password
+            },
+            success: function (response) {
+                document.getElementById("chk").innerHTML = response;
+            }
+        });
+
+    }</script>
 
 </body>
 </html>
