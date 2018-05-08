@@ -322,7 +322,7 @@ function showCart() {
             <tbody>
                     <tr>
                     
-                    <th scope=\"row\"><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></th>
+                    <th scope=\"row\"><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:60px\"> </a></th>
                     <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
                     <td><p class=\"text - center\" >£{$rowObj->price}</p ></td>
                     <td><form action=\"cartPage.php\" method=\"post\">
