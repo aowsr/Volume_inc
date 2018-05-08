@@ -11,22 +11,17 @@
     <header>
         <?php createNav() ?>
     </header>
-<div class=\"container-fluid\" id =\"title-wrapper\">
-            <h1 class=\"font-weight-heavy text-center\">Your message has been sent!</h1>
-            <br>
-            <br>
-            <br>
-            <h2 class=\" text-center\">Want to Contact Us Directly?</h2>
-            <hr class=\"rgba-white-light\" style=\"margin: 2% 10%;\">
-            <h3 class=\" text-center\"> Email - volumeincclothing@gmail.com</h3>
-            <hr class=\"rgba-white-light\" style=\"margin: 2% 10%;\">
-            <h3 class=\" text-center\">Direct Help Line - 07511 9292 929</h3>
+<div class="container">
 
-         </div>";
-}
+            <h1 class="text-center">Want to Contact Us Directly?</h1>
+            <hr class="rgba-white-light" style="margin: 2% 10%;">
+            <h5 class="text-center"> Email - volumeincclothing@gmail.com</h5>
+            <hr class="rgba-white-light" style="margin: 2% 10%;">
+            <h5 class="text-center">Direct Help Line - 07511 9292 929</h5>
+
 
 <hr class="rgba-white-light" style="margin: 2% 10%;">
-<h3 class=" text-center">Find us At - Newcastle upon Tyne NE2 1XE</h3>
+<h5 class=" text-center">Find us At - Newcastle upon Tyne NE2 1XE</h5>
 <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
 <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
 <div id="map" class="map"></div>
@@ -44,6 +39,8 @@
         })
     });
 </script>
+</div>
+
 
 </body>
 </html>

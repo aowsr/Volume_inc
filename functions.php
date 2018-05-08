@@ -77,7 +77,7 @@ function createNav() {
                         <a class=\"nav-link\" href=\"help.php\">Help</a>
                     </li>
                     <li class=\"nav-item mx-auto\">
-                        <a class=\"nav-link\" href=\"#\">Contact</a>
+                        <a class=\"nav-link\" href=\"contactUs.php\">Contact</a>
                     </li>
                 </ul>
             </div>
