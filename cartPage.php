@@ -29,14 +29,14 @@
                 </thead>
                 <?php showCart(); ?>
             </table>
-            <div class="mx-5">
+            <div class="mx-5 text-center">
                 <form  action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="business" value="volumeincclothing@gmail.com">
                     <input type="hidden" name="cmd" value="_cart">
                     <input type="hidden" name="currency_code" value="GBP">
                     <input type="hidden" name="upload" value="1">
                     <?php finalizeTransaction() ?>
-                    <button type="submit" class="btn btn-dark btn-default" id="PayPal">Pay Using PayPal</button>
+                    <button type="submit" class="btn btn-dark btn-default " id="PayPal">Pay Using PayPal</button>
                 </form>
             </div>
 

@@ -168,41 +168,42 @@ function displayChosenProduct() {
 
     echo "<div class=\"container-fluid\" id =\"wrapper\">
     <input type=\"hidden\" name=\"code\"  id= '{$rowObj->productCode}' value=\"{$rowObj->productCode}\">
-    <h1 class=\"font-weight-heavy text-center\">{$rowObj->productName}</h1>
-    <h2 class=\"font-weight-light text-center\">{$rowObj->colour}</h2>
+    
      
      <main>
-        <div class=\"continer\" id=\"storeMain\">
-            <div class = \"row\">
+        <div class=\"continer m-sm-5\" id=\"storeMain\">
+            <div class = \"row m-sm-4\">
                 <!-- Image Col -->
-                <div class = \"col\">
+                <div class = \"col \">
                     <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-fluid mx-auto d-block\"></a>
                  </div>
                 <!-- Details Col -->
-                <div class = \"col-sm\"> 
-                <br>    
-                <h4 class=\"text - center\">£{$rowObj->price}</h4>
-                <br>
-                <br>
+                <div class = \"col-sm mx-2\"> 
+                <h1 class=\"font-weight-heavy text-center\">{$rowObj->productName}</h1>
+                <h3 class=\"font-weight-light text-center\">{$rowObj->colour}</h3>
+                <h4 class=\"text-center\">£{$rowObj->price}</h4>
+
                 <form method=\"post\" action=\"cartPage.php?id={$rowObj->productCode}\">
-                <div class=\"form-group\">
-                    <label for=\"helpSelection\">Select Size</label>
-                    <select class=\"form-control\" id=\"problemOption\">
+                <div class=\"form-group p-5\">
+                    
+                    <select class=\"form-control mb-3 \" id=\"problemOption\">
+                        <option value=\"\" selected disabled>Select Size</option>
                         <option>S</option>
                         <option>M</option>
                         <option>L</option>
                         <option>XL</option>
                     </select>
-                <br>
-                <br>
-                <h5 class=\"text-center\">{$rowObj->description}</h5>
-                <br>
-                <br>
-                <button type=\"submit\" class=\"btn btn-dark btn-block\" name = \"quick_buy\">Quick Buy</button>
-                <button type=\"button\" class=\"btn btn-secondary btn-block\"  name = \"add_to_cart\" onclick=\"cart('{$rowObj->productCode}')\">Add To Cart</button>
+                    
+                <button type=\"submit\" class=\"btn btn-dark btn-block mb-3\" name = \"quick_buy\">Quick Buy</button>
+                <button type=\"button\" class=\"btn btn-secondary btn-block mb-3\"  name = \"add_to_cart\" onclick=\"cart('{$rowObj->productCode}')\">Add To Cart</button>
                 
                 </div>
                 </form>
+                
+                <h4 class=\"m-3\">Description</h4>
+                <p class=\"m-3\">{$rowObj->description}</p>
+                <h4 class=\"m-3\">Shipping</h4>
+                
             </div>
       </div>
 
