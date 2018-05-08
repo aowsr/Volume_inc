@@ -11,7 +11,7 @@
 <header>
     <?php createNav() ?>
 </header>
-</header>
+
 <!-- TITLE -->
 <div class="container-fluid" id="wrapper">
     <h1 class="font-weight-heavy text-center">WOMEN'S</h1>

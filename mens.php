@@ -11,7 +11,7 @@
 <header>
     <?php createNav() ?>
 </header>
-</header>
+
 <main>
     <!-- TITLE -->
     <div class="container-fluid" id="title-wrapper">
