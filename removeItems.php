@@ -9,9 +9,10 @@ $dbConn = getConnection();
 echo $_POST['removeItm'];
 $valueRemove = $_POST['removeItm'];
 
-foreach($_SESSION['shopping_cart'] as $key => $value) {
-    if($value == $valueRemove)
+foreach ($_SESSION['shopping_cart'] as $key => $value) {
+    if ($value == $valueRemove) {
         unset($_SESSION['shopping_cart'][$key]);
+    }
 }
 
 ?>

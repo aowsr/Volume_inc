@@ -5,6 +5,97 @@
  * Date: 15/03/2018
  * Time: 15:19
  */
+ini_set("session.save_path", "/home/unn_w16024005/sessionData");
+session_start();
+
+if (isset($_POST['item_id'])) {
+    showCart();
+}
+if (isset($_POST['total_cart_items'])) {
+    showCart();
+}
+function createHead($pageName) {
+    echo "    
+    <meta charset=\"UTF-8\"/>
+    <meta name=\"viewport\" content=\"width=device-width\"/>
+    <title>$pageName</title>
+
+    <link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\">
+    <!-- Bootstrap 4.0 Beta -->
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css\" integrity=\"sha256-m/h/cUDAhf6/iBRixTbuc8+Rg2cIETQtPcH9D3p2Kg0=\" crossorigin=\"anonymous\" />
+    <!-- open-iconic-bootstrap (icon set for bootstrap) -->
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css\" integrity=\"sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=\" crossorigin=\"anonymous\" />
+
+    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">
+    <script src=\"https://code.jquery.com/jquery-3.3.1.min.js\"></script>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>
+    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"></script>
+
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/css/swiper.css\">
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/css/swiper.min.css\">
+
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/js/swiper.js\"></script>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/js/swiper.min.js\"></script>
+    <script type=\"text/javascript\" src=\"functions.js\"></script>";
+}
+
+function createNav() {
+    echo "<header>
+    <!-- Nav Bar -->
+    <nav class=\"navbar navbar-expand-md navbar-fixed-top navbar-light bg-light main-nav\">
+        <div class=\"container\">
+            <div class=\"navbar-collapse collapse nav-content order-2 zindex-dropdown\">
+
+                <ul class=\"nav navbar-nav \">
+                    <li class=\"nav-item active mx-auto \">
+                        <a class=\"nav-link\" href=\"index.php\">Home</a>
+                    </li>
+                    <li class=\"nav-item mx-auto\">
+                        <a class=\"nav-link\" href=\"mens.php\">Men's</a>
+                    </li>
+                    <li class=\"nav-item mx-auto\">
+                        <a class=\"nav-link\" href=\"womens.php\">Women's</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class=\"nav navbar-nav text-nowrap flex-row  order-1 order-md-2 \" >
+
+                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\".nav-content\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                    <span class=\"navbar-toggler-icon\"></span>
+                </button>
+
+                <div class=\"nav navbar-nav mx-3 \">
+                    <img src=\"media/volume_inc_md.png\" class=\"d-none d-sm-block\" alt=\"\">
+                    <img src=\"media/volume_inc_sm.png\" class=\"d-block d-sm-none\" alt=\"\">
+                </div>
+            </ul>
+            <div class=\"ml-auto navbar-collapse collapse nav-content order-3 order-md-3\">
+                <ul class=\"ml-auto nav navbar-nav\">
+                    <li class=\"nav-item mx-auto\">
+                        <a class=\"nav-link\" href=\"help.php\">Help</a>
+                    </li>
+                    <li class=\"nav-item mx-auto\">
+                        <a class=\"nav-link\" href=\"#\">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class=\"d-flex flex-row order-4 order-sm-4 mx-1\">
+                <div class =\"d-flex flex-row mx-1 \">
+                    <a href=\"cartPage.php\">
+                        <button class=\"btn btn-default\"  id=\"\" role=\"button\" value=\"\">
+                                <span class=\"oi oi-cart\" title=\"icon name\" aria-hidden=\"true\"></span>
+                                <span id=\"total_items\" class=\"dot\"></span>
+                        </button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>";
+}
+
 function getConnection() {
     try {
         $connection = new PDO("mysql:host=localhost;dbname=unn_w16014111",
@@ -17,6 +108,7 @@ function getConnection() {
         throw new Exception("Connection error " . $e->getMessage(), 0, $e);
     }
 }
+
 function getTotalItems($Gender) {
 
     $dbConn = getConnection();
@@ -26,29 +118,30 @@ function getTotalItems($Gender) {
                             WHERE Gender = '$Gender' ";
 
     $queryResult = $dbConn->query($sql);
-    $total = $queryResult->rowCount();
+    $total       = $queryResult->rowCount();
     echo $total;
 
 }
-function getProductsGrid($height,$limit,$Gender) {
 
-        $dbConn = getConnection();
+function getProductsGrid($height, $limit, $Gender) {
 
-        if ($Gender == ""){
-            $chkGen=null;
-        }
-        else {
-            $chkGen= "WHERE Gender = '$Gender'";
-        }
+    $dbConn = getConnection();
 
-        $sql = "SELECT productCode, imgSrc, productName, description, colour, price, Gender  /* this while statement will run until there are no more records in the database */
+    if ($Gender == "") {
+        $chkGen = null;
+    }
+    else {
+        $chkGen = "WHERE Gender = '$Gender'";
+    }
+
+    $sql = "SELECT productCode, imgSrc, productName, description, colour, price, Gender  /* this while statement will run until there are no more records in the database */
                             FROM products
                             $chkGen
                             LIMIT $limit ";
 
-        $queryResult = $dbConn->query($sql);
-        while ($rowObj = $queryResult->fetchObject()) {
-            echo "<div class=\"col m-1 \">\n
+    $queryResult = $dbConn->query($sql);
+    while ($rowObj = $queryResult->fetchObject()) {
+        echo "<div class=\"col m-1 \">\n
 
                     <a href=\"storePage.php?productCode={$rowObj->productCode}\"><img src=\"{$rowObj->imgSrc}\" class=\"mx-auto d-block\"  style=\"height:{$height}px\"></a>
                     <h6 class=\"text-center m-0 \">{$rowObj->productName}</h6>
@@ -58,9 +151,66 @@ function getProductsGrid($height,$limit,$Gender) {
                       
                       </div>\n";
 
-        }
+    }
 
 }
+
+function displayChosenProduct() {
+    $dbConn      = getConnection();
+    $productCode = filter_has_var(INPUT_GET, 'productCode') ? $_GET['productCode'] : null;
+
+    $getCode = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+                            FROM products
+                            WHERE productCode = '$productCode'";
+
+    $queryResult = $dbConn->query($getCode);
+    $rowObj      = $queryResult->fetchObject();
+
+    echo "<div class=\"container-fluid\" id =\"wrapper\">
+    <input type=\"hidden\" name=\"code\"  id= '{$rowObj->productCode}' value=\"{$rowObj->productCode}\">
+    <h1 class=\"font-weight-heavy text-center\">{$rowObj->productName}</h1>
+    <h2 class=\"font-weight-light text-center\">{$rowObj->colour}</h2>
+     
+     <main>
+        <div class=\"continer\" id=\"storeMain\">
+            <div class = \"row\">
+                <!-- Image Col -->
+                <div class = \"col\">
+                    <a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-fluid mx-auto d-block\"></a>
+                 </div>
+                <!-- Details Col -->
+                <div class = \"col-sm\"> 
+                <br>    
+                <h4 class=\"text - center\">£{$rowObj->price}</h4>
+                <br>
+                <br>
+                <form method=\"post\" action=\"cartPage.php?id={$rowObj->productCode}\">
+                <div class=\"form-group\">
+                    <label for=\"helpSelection\">Select Size</label>
+                    <select class=\"form-control\" id=\"problemOption\">
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                <br>
+                <br>
+                <h5 class=\"text-center\">{$rowObj->description}</h5>
+                <br>
+                <br>
+                <button type=\"submit\" class=\"btn btn-dark btn-block\" name = \"quick_buy\">Quick Buy</button>
+                <button type=\"button\" class=\"btn btn-secondary btn-block\"  name = \"add_to_cart\" onclick=\"cart('{$rowObj->productCode}')\">Add To Cart</button>
+                
+                </div>
+                </form>
+            </div>
+      </div>
+
+     </main>";
+
+
+}
+
 function getProductsSwipe() {
     $dbConn = getConnection();
 
@@ -103,31 +253,29 @@ function sendHelpEmail() {
     $mail = new PHPMailer;
 
     $mail->isSMTP();
-    $mail->SMTPDebug = 0;
+    $mail->SMTPDebug   = 0;
     $mail->Debugoutput = 'html';
-    $mail->Host = "smtp.gmail.com";
-    $mail->Port = 587;
-    $mail->SMTPSecure = 'tls';
-    $mail->SMTPAuth = true;
-    $mail->Username = "volumeincclothing@gmail.com";
-    $mail->Password = "bostonred18";
+    $mail->Host        = "smtp.gmail.com";
+    $mail->Port        = 587;
+    $mail->SMTPSecure  = 'tls';
+    $mail->SMTPAuth    = true;
+    $mail->Username    = "volumeincclothing@gmail.com";
+    $mail->Password    = "bostonred18";
     $mail->setFrom('volumeincclothing@gmail.com', 'Volume Inc');
     $mail->addAddress('aows-r@live.co.uk', 'To');
 
     $mail->Subject = "$name $problem";
-    $mail->Body    =  "$email $problem $message";
+    $mail->Body    = "$email $problem $message";
 
     if (!$mail->send()) {
         echo "Error sending message";
-    } else {
+    }
+    else {
         echo "Message sent!";
     }
 
 
-
-
 }
-
 
 function showCart() {
     $dbConn = getConnection();
@@ -136,58 +284,68 @@ function showCart() {
         $_SESSION['shopping_cart'] = array();
 
     }
-    if (isset($_POST['add_too_cart'])) {
+    if (isset($_POST['quick_buy'])) {
         array_push($_SESSION['shopping_cart'], $_GET['id']);
     }
-    if(isset($_POST['removeBtn']))
-    {
+    if (isset($_POST['item_id'])) {
+        array_push($_SESSION['shopping_cart'], $_POST['item_id']);
+        echo count($_SESSION['shopping_cart']);
+        exit;
+    }
+    if (isset($_POST['total_cart_items'])) {
+        echo count($_SESSION['shopping_cart']);
+        exit;
+    }
+
+    if (isset($_POST['removeBtn'])) {
         removeItemFromCart();
     }
 
-        //Keeps track of number of items in cart
-        // $count = count($_SESSION['shopping_cart']);
-        // creating sequential array
-        // $product_ids = array_column($_SESSION['shopping_cart'], 'id');
+    //Keeps track of number of items in cart
+    // $count = count($_SESSION['shopping_cart']);
+    // creating sequential array
+    // $product_ids = array_column($_SESSION['shopping_cart'], 'id');
 
-        //  print_r($product_ids);
+    //  print_r($product_ids);
 
-        foreach ($_SESSION['shopping_cart'] as $value) {
+    foreach ($_SESSION['shopping_cart'] as $value) {
 
-            $productCode = $value;
-            $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
+        $productCode = $value;
+        $getCode     = "SELECT productCode, imgSrc, productName, description, colour, price, Gender
                             FROM products
                             WHERE productCode = '$productCode'";
 
-            $queryResult = $dbConn->query($getCode);
-            $rowObj      = $queryResult->fetchObject();
-            $total       = $total + $rowObj->price;
-            echo "     
+        $queryResult = $dbConn->query($getCode);
+        $rowObj      = $queryResult->fetchObject();
+        $total       = $total + $rowObj->price;
+        echo "    
             <tbody>
-                    <tr> 
-                    <td><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></td>
+                    <tr>
+                    
+                    <th scope=\"row\"><a href=\"#\"><img src=\"{$rowObj->imgSrc}\" class=\"img-responsive mx-sm d-block\" style=\"height:100px\"> </a></th>
                     <td><p class=\"font - weight - heavy text - center\">{$rowObj->productName}</p></td>
                     <td><p class=\"text - center\" >£{$rowObj->price}</p ></td>
                     <td><form action=\"cartPage.php\" method=\"post\">
                     <input type=\"hidden\" name=\"removeItm\" value=\"$productCode\">
-                    <button type=\"submit\" class=\"btn btn-dark btn-block\" name='removeBtn'>Remove From Cart</button>
+                    <button type=\"submit\" class=\"btn btn-dark btn-block\" name='removeBtn'>Remove</button>
                     </form></td>
                     
                     </tr>
        
         ";
-        }
-        echo "                     
+    }
+    echo "                     
                      <tr>
-                     <td><p class=\"font-weight-heavy text-center\">Total Price</p></td>
+                     <th scope=\"row\"><p class=\"font-weight-heavy text-center\">Total Price</p></th>
                      <td></td>
                      <td ><p class=\"text - center\" > £{$total} </p ></td>
                     </tr >";
 
-
 }
+
 function finalizeTransaction() {
     $dbConn = getConnection();
-    $i = 1;
+    $i      = 1;
     foreach ($_SESSION['shopping_cart'] as $value) {
 
         $productCode = $value;
@@ -196,7 +354,7 @@ function finalizeTransaction() {
                                                       WHERE productCode = '$productCode'";
 
         $queryResult = $dbConn->query($getCode);
-        $rowObj= $queryResult->fetchObject();
+        $rowObj      = $queryResult->fetchObject();
 
         echo "
                 <input type=\"hidden\" name=\"item_name_$i\" value=\"{$rowObj->productName}\">
@@ -204,19 +362,21 @@ function finalizeTransaction() {
                 <input type=\"hidden\" name=\"amount_$i\" value=\"{$rowObj->price}\">
                                     
             ";
-        $i ++;
+        $i++;
 
     }
 
 
 }
-function removeItemFromCart(){
+
+function removeItemFromCart() {
 
     $valueRemove = $_POST['removeItm'];
 
-    foreach($_SESSION['shopping_cart'] as $key => $value) {
-        if($value == $valueRemove)
+    foreach ($_SESSION['shopping_cart'] as $key => $value) {
+        if ($value == $valueRemove) {
             unset($_SESSION['shopping_cart'][$key]);
+        }
     }
 
 }

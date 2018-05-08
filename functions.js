@@ -1,24 +1,33 @@
 /**
  * Created by w16024005 on 23/04/2018.
  */
-function getFilterItems(str) {
-    if (str == "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else {
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+$(document).ready(function () {
+
+    $.ajax({
+        type: 'post',
+        url: 'functions.php',
+        data: {
+            total_cart_items: "total_items"
+        },
+        success: function (response) {
+            document.getElementById("total_items").innerHTML = response;
         }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","mens.php?q="+str,true);
-        xmlhttp.send();
-    }
+    });
+
+});
+function cart(id) {
+    var item = document.getElementById(id);
+    var prodId = document.getElementById(id).value;
+
+    $.ajax({
+        type: 'post',
+        url: 'functions.php',
+        data: {
+            item_id: prodId
+        },
+        success: function (response) {
+            document.getElementById("total_items").innerHTML = response;
+        }
+    });
+
 }

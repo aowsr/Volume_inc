@@ -8,11 +8,10 @@
 require_once('functions.php');
 $dbConn = getConnection();
 $search = $_POST['search'];
-$sql2 = "SELECT * FROM products WHERE productName LIKE '".$search."%'";
+$sql2   = "SELECT * FROM products WHERE productName LIKE '" . $search . "%'";
 $result = $dbConn->query($sql2);
 $output = '';
-if($result->fetchColumn() > 0)
-{
+if ($result->fetchColumn() > 0) {
     while ($rowObj = $result->fetchObject()) {
         $output .= "<div class=\"col \">\n
 
