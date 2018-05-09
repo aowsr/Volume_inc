@@ -16,7 +16,7 @@ if (isset($_POST['total_cart_items'])) {
 }
 function createHead($pageName) {
     echo "    
-    <meta charset=\"UTF-8\"/>
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">
     <meta name=\"viewport\" content=\"width=device-width\"/>
     <title>$pageName</title>
 
@@ -85,31 +85,78 @@ function createNav() {
                 <ul class=\"nav navbar-nav \">
                     <li class=\"nav-item active mx-auto \">
                                                 <!-- Button trigger modal -->
-                        <button type=\"button\" class=\"btn btn-default\" id='loginBtn' data-toggle=\"modal\" data-target=\"#exampleModalCenter\">
+                        <button type=\"button\" class=\"btn btn-default\"  data-toggle=\"modal\" data-target=\"#exampleModalCenter\">
                           <span class=\"oi oi-person\"></span>
+                        </button>";
+    if (isset($_SESSION['logged-in']) && $_SESSION['logged-in']) {
+        echo"
+<!-- Modal -->
+        <div class=\"modal
+             fade\" id=\"exampleModalCenter\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
+        <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
+              <div class=\"modal-content\" id='chk'>
+                    <div class=\"modal-header\">
+                        <h5 class=\"modal-title text-center\" id=\"exampleModalLongTitle\"></h5>
+                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                            <span aria-hidden=\"true\">&times;</span>
                         </button>
+                    </div>
+                    <div class=\"modal-body\" >
+                        <h1 class='text-center'>Welcome back!</h1>
+                    
+                    <div class=\"modal-footer\">
+                    <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>
+                    <button type=\"button\" name='logoutBtn' class=\"btn btn-warning\" onclick=\"logout()\">Logout</button>  
+        ";
+    }
+    else {
+        echo "
                         
                         <!-- Modal -->
-                        <div class=\"modal fade\" id=\"exampleModalCenter\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
-                          <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
-                            <div class=\"modal-content\">
-                              <div class=\"modal-header\">
+                        <div class=\"modal
+                             fade\" id=\"exampleModalCenter\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
+                        <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
+                        <div class=\"modal-content\" id='chk'>
+                            <div class=\"modal-header\">
                                 <h5 class=\"modal-title text-center\" id=\"exampleModalLongTitle\">Login in Your Account</h5>
                                 <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
-                                  <span aria-hidden=\"true\">&times;</span>
+                                    <span aria-hidden=\"true\">&times;</span>
                                 </button>
-                              </div>
-                              <div class=\"modal-body\" id='chk'>
-
-                              </div>
                             </div>
-                          </div>
+                            <div class=\"modal-body\" >
+                                <!-- Text input-->
+                                <form>
+                                    <div class=\"form-group\">
+                        
+                                        <div class=\"col\">
+                                            <input id=\"userinput\" name=\"textinput\" type=\"text\" placeholder=\"Username\" class=\"form-control input-md\" value=''>
+                                        </div>
+                                    </div>
+                        
+                                    <!-- Password input-->
+                                    <div class=\"form-group\">
+                                        <div class=\"col\">
+                                            <input id=\"passwordinput\" name=\"passwordinput\" type=\"password\" placeholder=\"Password\"
+                                                   class=\"form-control input-md\" value=''>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                            <div class=\"modal-footer\">
+                                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>
+                                <button type=\"button\" name='loginBtn' class=\"btn btn-primary\" onclick=\"login()\">Login</button>
+                            </div>
                         </div>
-                    </li>
-                </ul>
-                
+                    </div>
+                </div>
             </div>
-            
+            ";
+}
+    echo"
+        </li>
+    </ul>
+                
+</div>
             <div class=\"d-flex flex-row order-4 order-sm-4 mx-1\">
                 <div class =\"d-flex flex-row mx-1 \">
                     <a href=\"cartPage.php\">

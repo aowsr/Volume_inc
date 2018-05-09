@@ -32,7 +32,7 @@
                 <!-- NAME INPUT -->
                 <div class="form-group">
                     <label for="custName">Your Name</label>
-                    <input class="form-control" type="text" value="Enter Name" name="custName">
+                    <input class="form-control" type="text" placeholder="Enter Name" name="custName">
                 </div>
                 <!-- PROBLEM SELECTOR -->
                 <div class="form-group">

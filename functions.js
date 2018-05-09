@@ -32,20 +32,8 @@ function cart(id) {
 
 }
 
-$(document).ready(function () {
 
-    $.ajax({
-        type: 'post',
-        url: 'loginProccess.php',
-        data: {
 
-        },
-        success: function (response) {
-            document.getElementById("chk").innerHTML = response;
-        }
-    });
-
-});
 
 function login() {
     var username = document.getElementById("userinput").value;
@@ -71,7 +59,7 @@ function logout() {
 
     $.ajax({
         type: 'post',
-        url: 'loginProccess.php',
+        url: 'logoutProccess.php',
         data: {
         },
         success: function (response) {
